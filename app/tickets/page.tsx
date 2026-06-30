@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Check, ArrowRight, MapPin, Calendar } from 'lucide-react'
 import { PASS_CONFIG, PASS_ORDER } from '@/lib/ticket-config'
+import Navbar from '@/components/Navbar'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,7 +14,9 @@ export default function TicketsPage() {
   const passes = PASS_ORDER.map((id) => PASS_CONFIG[id])
 
   return (
-    <div className="relative min-h-screen bg-ink overflow-hidden">
+    <>
+      <Navbar />
+      <div className="relative min-h-screen bg-ink overflow-hidden">
 
       {/* ── Atmospheric blooms ── */}
       <div
@@ -58,28 +61,8 @@ export default function TicketsPage() {
         I
       </div>
 
-      {/* ── Minimal header / back navigation ── */}
-      <header className="relative z-20 max-w-[1440px] mx-auto px-8 md:px-20 lg:px-28 pt-10 pb-0 flex items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-3 group"
-          aria-label="Torna alla home"
-        >
-          <span className="font-headline text-gold text-2xl font-light tracking-[0.12em]">CIM</span>
-          <span className="w-px h-5 bg-gold/20 hidden sm:block" />
-          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/30 hidden sm:block leading-tight">
-            Campionato<br />Italiano di Massaggio
-          </span>
-        </Link>
-
-        <div className="flex items-center gap-2 text-warm/30 font-body text-[10px] tracking-[0.3em] uppercase">
-          <span className="w-4 h-px bg-warm/20" />
-          <span>Biglietti</span>
-        </div>
-      </header>
-
-      {/* ── Page header ── */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 lg:px-28 pt-20 md:pt-28 pb-16 md:pb-20">
+      {/* ── Page header with top padding for fixed navbar ── */}
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-20 lg:px-28 pt-32 md:pt-40 pb-16 md:pb-20">
 
         {/* Eyebrow */}
         <div className="flex items-center gap-4 mb-8 animate-fade-up [animation-delay:0.1s]">
@@ -140,6 +123,7 @@ export default function TicketsPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 
