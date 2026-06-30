@@ -208,7 +208,7 @@ export default function CheckoutForm() {
 
           {/* Breadcrumb */}
           <div className="hidden sm:flex items-center gap-2 font-body text-[9px] tracking-[0.28em] uppercase">
-            <Link href="/tickets" className="text-warm/30 hover:text-warm/60 transition-colors">Biglietti</Link>
+            <Link href="/" className="text-warm/30 hover:text-warm/60 transition-colors">Home</Link>
             <span className="text-warm/15">›</span>
             <span className="text-gold/60">Checkout</span>
           </div>
@@ -217,206 +217,90 @@ export default function CheckoutForm() {
         {/* Back link */}
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 lg:px-28 pt-10">
           <Link
-            href="/tickets"
+            href="/"
             className="inline-flex items-center gap-2 font-body text-[10px] tracking-[0.28em] uppercase text-warm/35 hover:text-warm/65 transition-colors duration-300 group"
           >
             <ArrowLeft size={12} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
-            Modifica selezione
+            Torna alla Home
           </Link>
         </div>
 
         {/* ── Main checkout layout ── */}
         <main className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 lg:px-28 pt-12 pb-24 md:pb-36">
-
-          {/* Page title */}
-          <div className="mb-14 md:mb-16 animate-fade-up [animation-delay:0.1s]">
-            <div className="flex items-center gap-4 mb-5">
-              <div className="h-px bg-gold/40" style={{ width: '28px' }} />
-              <p className="font-body text-[10px] tracking-[0.4em] uppercase text-gold/60">
-                Completa la prenotazione
-              </p>
-            </div>
-            <h1
-              className="font-headline font-light text-warm leading-[0.9]"
-              style={{ fontSize: 'clamp(2rem, 4.5vw, 4.2rem)' }}
-            >
-              I tuoi dati
-            </h1>
-          </div>
-
-          {/* Two-column layout */}
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            noValidate
-            className="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-10 xl:gap-16 items-start"
-          >
-            {/* ── LEFT: Form fields ── */}
-            <div className="space-y-8 animate-fade-up [animation-delay:0.2s]">
-
-              {/* Name row */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <FormField
-                  label="Nome"
-                  id="nome"
-                  placeholder="Marco"
-                  error={errors.nome?.message}
-                  {...register('nome')}
-                />
-                <FormField
-                  label="Cognome"
-                  id="cognome"
-                  placeholder="Rossi"
-                  error={errors.cognome?.message}
-                  {...register('cognome')}
-                />
-              </div>
-
-              {/* Email */}
-              <FormField
-                label="Email"
-                id="email"
-                type="email"
-                placeholder="marco.rossi@email.it"
-                hint="Riceverai la conferma e il biglietto su questo indirizzo"
-                error={errors.email?.message}
-                {...register('email')}
-              />
-
-              {/* Telefono */}
-              <FormField
-                label="Telefono"
-                id="telefono"
-                type="tel"
-                placeholder="+39 320 1234567"
-                hint="Per comunicazioni urgenti relative all'evento"
-                error={errors.telefono?.message}
-                {...register('telefono')}
-              />
-
-              {/* Categoria — solo per competitori */}
-              {isCompetitore && (
-                <div>
-                  <label
-                    htmlFor="categoria"
-                    className="block font-body text-[10px] tracking-[0.3em] uppercase text-warm/45 mb-3"
-                  >
-                    Categoria di gara
-                    <span className="ml-1 text-gold/60">*</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="categoria"
-                      {...register('categoria')}
-                      className={[
-                        'w-full bg-charcoal/80 border rounded-xl px-5 py-4',
-                        'font-body text-[13px] text-warm/70',
-                        'appearance-none cursor-pointer',
-                        'transition-all duration-300',
-                        'focus:outline-none focus:ring-1',
-                        errors.categoria
-                          ? 'border-red-500/50 focus:border-red-500/70 focus:ring-red-500/20'
-                          : 'border-warm/10 focus:border-gold/50 focus:ring-gold/15',
-                      ].join(' ')}
-                    >
-                      <option value="">Seleziona la disciplina</option>
-                      {pass.categorie?.map((cat) => (
-                        <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-                    {/* Custom chevron */}
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-warm/25">
-                      <svg width="12" height="7" viewBox="0 0 12 7" fill="none">
-                        <path d="M1 1l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                  </div>
-                  {errors.categoria && (
-                    <FieldError message={errors.categoria.message!} />
-                  )}
-                </div>
-              )}
-
-              {/* Privacy checkbox */}
-              <div>
-                <label className="flex items-start gap-4 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    {...register('privacy')}
-                    className="sr-only peer"
-                  />
-                  {/* Custom checkbox visual */}
-                  <div
-                    className={[
-                      'mt-0.5 w-5 h-5 shrink-0 rounded-md border transition-all duration-200',
-                      'flex items-center justify-center',
-                      'peer-checked:bg-gold/90 peer-checked:border-gold',
-                      'peer-focus-visible:ring-2 peer-focus-visible:ring-gold/30 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-ink',
-                      errors.privacy
-                        ? 'border-red-500/50 bg-red-500/5'
-                        : 'border-warm/20 bg-charcoal/60 group-hover:border-warm/35',
-                    ].join(' ')}
-                  >
-                    <Check size={11} strokeWidth={2.5} className="text-ink opacity-0 peer-checked:opacity-100" />
-                  </div>
-                  <span className="font-body text-[12px] font-light leading-[1.8] text-warm/40">
-                    Ho letto e accetto la{' '}
-                    <a
-                      href="/privacy"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gold/60 hover:text-gold/90 underline underline-offset-2 transition-colors"
-                    >
-                      Privacy Policy
-                    </a>{' '}
-                    e i{' '}
-                    <a
-                      href="/termini"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gold/60 hover:text-gold/90 underline underline-offset-2 transition-colors"
-                    >
-                      Termini e Condizioni
-                    </a>{' '}
-                    dell'evento.
-                  </span>
-                </label>
-                {errors.privacy && (
-                  <FieldError message={errors.privacy.message!} />
-                )}
-              </div>
-
-              {/* Mobile: API error (shown here too, for visibility) */}
-              {apiError && (
-                <div className="lg:hidden">
-                  <ApiErrorBanner message={apiError} onDismiss={() => setApiError(null)} />
-                </div>
-              )}
-
-              {/* Mobile: submit button */}
-              <div className="lg:hidden pt-2">
-                <SubmitButton isLoading={isSubmitting} />
-              </div>
-            </div>
-
-            {/* ── RIGHT: Order summary ── */}
-            <div className="animate-fade-up [animation-delay:0.3s]">
-              <div className="sticky top-8">
-                <OrderSummary
-                  pass={pass}
-                  imponibile={imponibile}
-                  iva={iva}
-                  totale={totale}
-                  isCompetitore={isCompetitore}
-                  isLoading={isSubmitting}
-                  apiError={apiError}
-                  onDismissError={() => setApiError(null)}
-                />
-              </div>
-            </div>
-          </form>
+          {/* Coming Soon Section */}
+          <ComingSoonSection />
         </main>
       </div>
     </>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// ComingSoonSection — Presto disponibile page
+// ---------------------------------------------------------------------------
+function ComingSoonSection() {
+  return (
+    <div className="py-20 md:py-32 flex items-center justify-center min-h-[60vh]">
+      <div className="max-w-2xl mx-auto text-center animate-fade-up">
+        {/* Decorative top line */}
+        <div className="flex items-center justify-center mb-8">
+          <div className="h-px bg-gold/30 w-12" />
+          <div
+            className="w-8 h-8 rounded-full border border-gold/40 flex items-center justify-center mx-4"
+            style={{ animation: 'pulse-gold 2s ease-in-out infinite' }}
+          >
+            <Sparkles size={14} className="text-gold/60" />
+          </div>
+          <div className="h-px bg-gold/30 w-12" />
+        </div>
+
+        {/* Main heading */}
+        <h1
+          className="font-headline font-light text-warm leading-[1.0] mb-6"
+          style={{ fontSize: 'clamp(2.5rem, 5vw, 4.2rem)' }}
+        >
+          Presto<br />
+          <em className="not-italic text-gold/75">disponibile.</em>
+        </h1>
+
+        {/* Description */}
+        <p className="font-body text-[14px] md:text-[16px] font-light leading-[1.9] text-warm/50 mb-12 max-w-xl mx-auto">
+          La fase di prenotazione dei biglietti sarà disponibile a breve.
+          <br />
+          Rimani aggiornato seguendo i nostri canali per scoprire quando potrai acquistare il tuo pass per il Campionato Italiano di Massaggio 2026.
+        </p>
+
+        {/* Decorative gold line */}
+        <div className="flex justify-center mb-12">
+          <div 
+            className="h-px bg-gold/30 origin-center animate-draw-line" 
+            style={{ width: '80px' }} 
+          />
+        </div>
+
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase rounded-full px-8 py-4.5 transition-all duration-300 bg-gold text-ink hover:bg-gold-light hover:shadow-[0_0_50px_rgba(190,153,56,0.4)] active:scale-[0.98]"
+          >
+            <ArrowLeft size={13} strokeWidth={1.5} />
+            <span>Torna alla Home</span>
+          </Link>
+          <a
+            href="mailto:info@concorsomassaggio.it"
+            className="inline-flex items-center justify-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase rounded-full px-8 py-4.5 transition-all duration-300 border border-gold/40 text-gold/60 hover:border-gold/70 hover:text-gold/90"
+          >
+            <span>Contattaci</span>
+          </a>
+        </div>
+
+        {/* Bottom note */}
+        <p className="mt-16 font-body text-[10px] text-warm/25 tracking-[0.15em] uppercase">
+          Campionato Italiano di Massaggio — Milano 2026
+        </p>
+      </div>
+    </div>
   )
 }
 

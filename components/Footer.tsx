@@ -33,7 +33,7 @@ export default function Footer() {
             </h3>
           </div>
           <a
-            href="#biglietti"
+            href="/tickets"
             className="group flex-shrink-0 inline-flex items-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase text-ink bg-gold rounded-full px-10 py-4 hover:bg-gold-light transition-all duration-300 hover:shadow-[0_0_40px_rgba(190,153,56,0.25)]"
           >
             Acquista il tuo Pass

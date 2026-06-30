@@ -4,9 +4,9 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { label: "Categorie", href: "#categorie" },
-  { label: "Giuria",    href: "#giuria"    },
-  { label: "Programma", href: "#programma" },
+  { label: "Categorie", href: "/#categorie" },
+  { label: "Giuria",    href: "/#giuria"    },
+  { label: "Programma", href: "/#programma" },
 ]
 
 export default function Navbar() {
@@ -31,7 +31,7 @@ export default function Navbar() {
 
         {/* ── Wordmark ── */}
         <a
-          href="#"
+          href="/"
           className="flex items-center gap-3 group"
           aria-label="Campionato Italiano di Massaggio — Home"
         >
