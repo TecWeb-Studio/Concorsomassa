@@ -134,8 +134,7 @@ export default function HeroSection() {
 
           {/* CTA button */}
           <a
-            id="biglietti"
-            href="#biglietti"
+            href="/tickets"
             className="group relative inline-flex items-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase text-ink bg-gold rounded-full px-10 py-4 overflow-hidden transition-all duration-300 hover:bg-gold-light hover:shadow-[0_0_40px_rgba(190,153,56,0.3)]"
           >
             <span className="relative z-10">Acquista il tuo Pass</span>

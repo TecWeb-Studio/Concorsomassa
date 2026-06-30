@@ -57,7 +57,7 @@ export default function Navbar() {
           ))}
 
           <a
-            href="#biglietti"
+            href="/tickets"
             className="font-body text-[10px] tracking-[0.25em] uppercase text-gold border border-gold/40 rounded-full px-6 py-2.5 hover:bg-gold hover:text-ink hover:border-gold transition-all duration-400"
           >
             Acquista
@@ -92,7 +92,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="#biglietti"
+            href="/tickets"
             onClick={() => setMenuOpen(false)}
             className="font-body text-[11px] tracking-[0.28em] uppercase text-gold border border-gold/40 rounded-full px-6 py-3 text-center hover:bg-gold hover:text-ink transition-all duration-300"
           >
