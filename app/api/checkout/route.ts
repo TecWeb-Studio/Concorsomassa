@@ -1,32 +1,34 @@
-import { eq, sql } from 'drizzle-orm'
+import { eq, sql, inArray } from 'drizzle-orm'
 import { type NextRequest } from 'next/server'
 import { randomUUID } from 'node:crypto'
+import Stripe from 'stripe'
 import { db } from '@/lib/db'
-import { orders, ticketTypes, users } from '@/lib/schema'
+import { orders, users, categorieCompetizione, iscrizioniCategorie } from '@/lib/schema'
+import { calcolaTotale } from '@/lib/ticket-config'
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 interface CheckoutRequestBody {
-  // Dati anagrafici (necessari per creare/trovare l'utente)
   nome:        string
   cognome:     string
   email:       string
   telefono:    string
-  // Dati ordine
-  ticketTypeId: string
-  quantity:    number
-  // Solo per Pass Competitore
-  categoria?:  string
+  professione: string
+  categorie:   string[]   // array di ID categorie
+}
+
+// ---------------------------------------------------------------------------
+// Stripe client (lazy init per evitare errori in assenza di chiave)
+// ---------------------------------------------------------------------------
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) throw new Error('STRIPE_SECRET_KEY non configurata')
+  return new Stripe(key, { apiVersion: '2026-06-24.dahlia' })
 }
 
 // ---------------------------------------------------------------------------
 // POST /api/checkout
-//
-// Crea un utente (o recupera l'esistente via email) e un ordine PENDING
-// con lock atomico sui biglietti disponibili.
-// Usa una transazione Drizzle (db.transaction()) per garantire atomicità
-// ed evitare overselling su Turso/LibSQL.
 // ---------------------------------------------------------------------------
 export async function POST(request: NextRequest) {
   let body: CheckoutRequestBody
@@ -34,155 +36,152 @@ export async function POST(request: NextRequest) {
   try {
     body = (await request.json()) as CheckoutRequestBody
   } catch {
-    return Response.json(
-      { error: 'Corpo della richiesta non valido (JSON malformato)' },
-      { status: 400 }
-    )
+    return Response.json({ error: 'JSON malformato' }, { status: 400 })
   }
 
-  const { nome, cognome, email, telefono, ticketTypeId, quantity, categoria } = body
+  const { nome, cognome, email, telefono, professione, categorie } = body
 
-  // Validazione input base
-  if (!nome || !cognome || !email || !telefono || !ticketTypeId || !quantity) {
-    return Response.json(
-      { error: 'Tutti i campi obbligatori devono essere compilati' },
-      { status: 400 }
-    )
+  // Validazione input
+  if (!nome?.trim() || !cognome?.trim() || !email?.trim() || !telefono?.trim()) {
+    return Response.json({ error: 'Tutti i campi obbligatori devono essere compilati' }, { status: 400 })
   }
-  if (!Number.isInteger(quantity) || quantity < 1) {
-    return Response.json(
-      { error: 'quantity deve essere un intero >= 1' },
-      { status: 400 }
-    )
+  if (!Array.isArray(categorie) || categorie.length === 0) {
+    return Response.json({ error: 'Seleziona almeno una categoria' }, { status: 400 })
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return Response.json(
-      { error: 'Indirizzo email non valido' },
-      { status: 400 }
-    )
+    return Response.json({ error: 'Indirizzo email non valido' }, { status: 400 })
   }
 
   try {
-    // -----------------------------------------------------------------------
-    // TRANSAZIONE ATOMICA
-    // Drizzle esegue BEGIN / COMMIT / ROLLBACK attorno al callback.
-    // Se il callback lancia, la transazione fa automaticamente ROLLBACK.
-    // -----------------------------------------------------------------------
     const result = await db.transaction(async (tx) => {
-      // 1. Leggi il ticket_type con un lock FOR UPDATE emulato:
-      //    su SQLite/Turso il lock è implicito nella transazione serializzabile.
-      const [ticketType] = await tx
+
+      // 1. Verifica che tutte le categorie esistano e abbiano posti disponibili
+      const cats = await tx
         .select()
-        .from(ticketTypes)
-        .where(eq(ticketTypes.id, ticketTypeId))
+        .from(categorieCompetizione)
+        .where(inArray(categorieCompetizione.id, categorie))
 
-      if (!ticketType) {
-        throw new CheckoutError('Tipo biglietto non trovato', 404)
+      if (cats.length !== categorie.length) {
+        throw new Error('Una o più categorie non trovate')
       }
 
-      // 2. Verifica disponibilità
-      const available = ticketType.maxQuantity - ticketType.quantitySold
-      if (available < quantity) {
-        throw new CheckoutError(
-          available === 0
-            ? 'Ci dispiace, i biglietti per questa categoria si sono appena esauriti.'
-            : `Disponibilità insufficiente. Rimasti solo ${available} posto${available === 1 ? '' : 'i'}.`,
-          409
-        )
+      for (const cat of cats) {
+        const disponibili = cat.postiDisponibili - cat.postiOccupati
+        if (disponibili <= 0) {
+          throw new Error(`La categoria "${cat.nome}" è esaurita. Scegli un'altra disciplina.`)
+        }
       }
 
-      // 3. Trova o crea l'utente tramite email (unica chiave identificativa)
-      const [existingUser] = await tx
+      // 2. Trova o crea l'utente
+      const emailNorm = email.toLowerCase().trim()
+      const [existing] = await tx
         .select({ id: users.id })
         .from(users)
-        .where(eq(users.email, email.toLowerCase().trim()))
+        .where(eq(users.email, emailNorm))
 
       let userId: string
-      if (existingUser) {
-        userId = existingUser.id
+      if (existing) {
+        userId = existing.id
+        // Aggiorna i dati se necessario
+        await tx.update(users)
+          .set({ nome: nome.trim(), cognome: cognome.trim(), telefono: telefono.trim(), professione: professione.trim() })
+          .where(eq(users.id, userId))
       } else {
         userId = randomUUID()
         await tx.insert(users).values({
-          id:    userId,
-          nome:  `${nome.trim()} ${cognome.trim()}`,
-          email: email.toLowerCase().trim(),
+          id:          userId,
+          nome:        nome.trim(),
+          cognome:     cognome.trim(),
+          email:       emailNorm,
+          telefono:    telefono.trim(),
+          professione: professione.trim(),
         })
       }
 
-      // 4. Calcola totale e scadenza (15 minuti da ora)
-      const totalPrice = ticketType.prezzo * quantity
-      const expiresAt  = new Date(Date.now() + 15 * 60 * 1000)
+      // 3. Calcola totale e crea ordine PENDING
+      const totalPrice = calcolaTotale(categorie)
       const orderId    = randomUUID()
+      const expiresAt  = new Date(Date.now() + 30 * 60 * 1000)  // 30 minuti
 
-      // 5. Inserisci l'ordine in stato PENDING
       await tx.insert(orders).values({
         id: orderId,
         userId,
-        status: 'PENDING',
+        status:     'PENDING',
         totalPrice,
         expiresAt,
       })
 
-      // 6. Incrementa quantity_sold per bloccare i posti (lock ottimistico).
-      //    Se un altro writer concorrente ha già aggiornato la riga,
-      //    la transazione serializzabile di Turso rileverà il conflitto
-      //    e farà rollback automaticamente.
-      await tx
-        .update(ticketTypes)
-        .set({
-          quantitySold: sql`${ticketTypes.quantitySold} + ${quantity}`,
-        })
-        .where(eq(ticketTypes.id, ticketTypeId))
+      // 4. Crea le righe di iscrizione (una per categoria)
+      for (const catId of categorie) {
+        const cat      = cats.find(c => c.id === catId)!
+        const isExtra  = categorie.indexOf(catId) > 0
+        const prezzo   = isExtra ? 90 : cat.prezzoIscrizione
 
-      return {
-        orderId,
-        status: 'PENDING' as const,
-        totalPrice,
-        expiresAt:  expiresAt.toISOString(),
-        ticketType: {
-          id:     ticketType.id,
-          nome:   ticketType.nome,
-          prezzo: ticketType.prezzo,
-        },
-        quantity,
-        categoria: categoria ?? null,
-        cliente:   { nome: nome.trim(), cognome: cognome.trim(), email: email.toLowerCase().trim() },
+        await tx.insert(iscrizioniCategorie).values({
+          id:             randomUUID(),
+          orderId,
+          categoriaId:    catId,
+          prezzoBloccato: prezzo,
+        })
+
+        // Blocca il posto (incrementa posti_occupati atomicamente)
+        await tx.update(categorieCompetizione)
+          .set({ postiOccupati: sql`${categorieCompetizione.postiOccupati} + 1` })
+          .where(eq(categorieCompetizione.id, catId))
       }
+
+      return { orderId, totalPrice, emailNorm, nome: nome.trim(), cognome: cognome.trim() }
     })
 
     // -----------------------------------------------------------------------
-    // Risposta di successo
+    // Crea Stripe Checkout Session
     // -----------------------------------------------------------------------
-    return Response.json(
-      {
-        message:
-          'Ordine creato. Completa il pagamento entro 15 minuti o il posto sarà rilasciato.',
-        data: result,
+    const stripe   = getStripe()
+    const origin   = request.headers.get('origin') ?? process.env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000'
+
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = categorie.map((catId, i) => {
+      const prezzo    = i === 0 ? 120 : 90
+      const nomeCat   = catId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
+      return {
+        price_data: {
+          currency:     'eur',
+          unit_amount:  prezzo * 100,   // Stripe usa centesimi
+          product_data: {
+            name:        `Iscrizione: ${nomeCat}`,
+            description: 'Campionato Italiano Massaggiatori 2026',
+          },
+        },
+        quantity: 1,
+      }
+    })
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items:           lineItems,
+      mode:                 'payment',
+      customer_email:       result.emailNorm,
+      success_url:          `${origin}/grazie-iscrizione?orderId=${result.orderId}&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url:           `${origin}/checkout`,
+      metadata: {
+        orderId:   result.orderId,
+        concorrente: `${result.nome} ${result.cognome}`,
       },
-      { status: 201 }
-    )
+      expires_at: Math.floor(Date.now() / 1000) + 30 * 60,
+    })
+
+    // Salva l'ID sessione Stripe sull'ordine
+    await db.update(orders)
+      .set({ stripeSessionId: session.id })
+      .where(eq(orders.id, result.orderId))
+
+    return Response.json({
+      orderId:    result.orderId,
+      stripeUrl:  session.url,
+    })
+
   } catch (err) {
-    if (err instanceof CheckoutError) {
-      return Response.json({ error: err.message }, { status: err.statusCode })
-    }
-
-    console.error('[checkout] Errore transazione:', err)
-    return Response.json(
-      { error: 'Errore interno del server. Riprova tra qualche istante.' },
-      { status: 500 }
-    )
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Helper: errore tipizzato con HTTP status code
-// ---------------------------------------------------------------------------
-class CheckoutError extends Error {
-  constructor(
-    message: string,
-    public readonly statusCode: number
-  ) {
-    super(message)
-    this.name = 'CheckoutError'
+    const msg = err instanceof Error ? err.message : 'Errore imprevisto'
+    console.error('[checkout]', msg)
+    return Response.json({ error: msg }, { status: 500 })
   }
 }

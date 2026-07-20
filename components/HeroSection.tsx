@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react"
 export default function HeroSection() {
   return (
     <section
-      id="hero"
+      id="evento"
       className="relative min-h-screen bg-ink flex flex-col overflow-hidden"
     >
 
@@ -97,13 +97,13 @@ export default function HeroSection() {
             className="block text-warm animate-fade-up [animation-delay:0.55s]"
             style={{ fontSize: "clamp(3.2rem, 8.5vw, 9.5rem)" }}
           >
-            Italiano di
+            Italiano
           </span>
           <span
             className="block text-gold animate-fade-up [animation-delay:0.7s] italic"
             style={{ fontSize: "clamp(3.2rem, 8.5vw, 9.5rem)" }}
           >
-            Massaggio
+            Massaggiatori
           </span>
         </h1>
 
@@ -122,22 +122,22 @@ export default function HeroSection() {
               <span
                 className="inline-block w-4 h-px bg-warm/20"
               />
-              14 – 15 Giugno 2026
+              Venerdì – Domenica · Giugno 2026
             </p>
             <p className="font-body text-[11px] tracking-[0.3em] uppercase text-warm/38 flex items-center gap-2">
               <span
                 className="inline-block w-4 h-px bg-warm/20"
               />
-              Palazzo delle Stelline, Milano
+              <a href="#location" className="hover:text-warm/70 transition-colors">Palazzo delle Stelline, Milano</a>
             </p>
           </div>
 
           {/* CTA button */}
           <a
-            href="/tickets"
+            href="/checkout"
             className="group relative inline-flex items-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase text-ink bg-gold rounded-full px-10 py-4 overflow-hidden transition-all duration-300 hover:bg-gold-light hover:shadow-[0_0_40px_rgba(190,153,56,0.3)]"
           >
-            <span className="relative z-10">Acquista il tuo Pass</span>
+            <span className="relative z-10">Iscriviti ora</span>
             <ArrowRight
               size={13}
               className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"

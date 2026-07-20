@@ -1,5 +1,5 @@
 /**
- * Seed script — Popola il database Turso con i tipi di biglietto ufficiali.
+ * Seed script — Popola il database Turso con le categorie ufficiali del campionato.
  *
  * Esecuzione:
  *   npx tsx lib/seed.ts
@@ -9,52 +9,85 @@
 import { loadEnvConfig } from '@next/env'
 import { eq } from 'drizzle-orm'
 
-// Carica .env.local prima di tutto
 loadEnvConfig(process.cwd())
 
-// Le import dei moduli DB devono avvenire DOPO loadEnvConfig
-const { db }          = await import('./db.js')
-const { ticketTypes } = await import('./schema.js')
+const { db }                    = await import('./db.js')
+const { categorieCompetizione } = await import('./schema.js')
 
-const TICKET_TYPES = [
+const CATEGORIE = [
   {
-    id:          'pass-competitore',
-    nome:        'Pass Competitore',
-    prezzo:      290.00,
-    maxQuantity: 120,
+    id:                 'massaggio-tecnico-sportivo',
+    nome:               'Massaggio Tecnico Sportivo',
+    slug:               'massaggio-tecnico-sportivo',
+    descrizione:        'Categoria dedicata alle tecniche manuali applicate al contesto sportivo, con attenzione a valutazione funzionale, preparazione muscolare, scarico e recupero.',
+    chiPuoIscriversi:   'Massaggiatori sportivi, operatori del benessere, fisioterapisti, studenti avanzati con formazione in massaggio sportivo. Età minima: 18 anni.',
+    durataProva:        '25 minuti di prova + 5 minuti tecnici',
+    criteriValutazione: JSON.stringify(['Precisione tecnica', 'Scelta delle manovre', 'Ergonomia', 'Efficacia percepita', 'Sicurezza', 'Comunicazione', 'Igiene e gestione del tempo']),
+    premioOro:          500, premioArgento: 300, premioBronzo: 150,
+    prezzoIscrizione:   120, postiDisponibili: 30, ordine: 1,
   },
   {
-    id:          'pass-visitatore',
-    nome:        'Pass Visitatore',
-    prezzo:      45.00,
-    maxQuantity: 500,
+    id:                 'kirei-kobido',
+    nome:               'Kirei Kobido',
+    slug:               'kirei-kobido',
+    descrizione:        'Categoria dedicata al trattamento viso di ispirazione Kobido/Kirei, con focus su manualità, ritmo, delicatezza, sequenza, precisione e qualità dell\'esperienza per il ricevente.',
+    chiPuoIscriversi:   'Operatori formati in tecniche viso, Kobido, Kirei, estetica avanzata o massaggio facciale con conoscenza delle controindicazioni.',
+    durataProva:        '25 minuti di prova + 5 minuti setup',
+    criteriValutazione: JSON.stringify(['Fluidità', 'Ritmo', 'Precisione delle manovre', 'Postura', 'Delicatezza', 'Continuità', 'Comfort del ricevente', 'Igiene']),
+    premioOro:          500, premioArgento: 300, premioBronzo: 150,
+    prezzoIscrizione:   120, postiDisponibili: 30, ordine: 2,
+  },
+  {
+    id:                 'massaggio-thai',
+    nome:               'Massaggio Thai',
+    slug:               'massaggio-thai',
+    descrizione:        'Categoria dedicata al massaggio Thai con tecniche di pressione, mobilizzazione e stretching assistito, con attenzione a sicurezza, controllo del corpo e fluidità.',
+    chiPuoIscriversi:   'Operatori con formazione specifica in Thai massage o discipline corporee compatibili con conoscenza delle controindicazioni.',
+    durataProva:        '30 minuti di prova + 5 minuti tecnici',
+    criteriValutazione: JSON.stringify(['Sequenza', 'Postura', 'Controllo della pressione', 'Sicurezza degli allungamenti', 'Fluidità', 'Ascolto del ricevente', 'Igiene']),
+    premioOro:          500, premioArgento: 300, premioBronzo: 150,
+    prezzoIscrizione:   120, postiDisponibili: 30, ordine: 3,
+  },
+  {
+    id:                 'massaggio-olistico',
+    nome:               'Massaggio Olistico',
+    slug:               'massaggio-olistico',
+    descrizione:        'Categoria dedicata a trattamenti orientati al benessere globale, con integrazione di tecniche rilassanti, riequilibranti o energetiche, mantenendo standard professionali.',
+    chiPuoIscriversi:   'Operatori olistici, massaggiatori del benessere, estetisti, professionisti o studenti avanzati con formazione in tecniche manuali non sanitarie.',
+    durataProva:        '30 minuti di prova',
+    criteriValutazione: JSON.stringify(['Coerenza del trattamento', 'Qualità del contatto', 'Ritmo', 'Ascolto', 'Gestione ambiente', 'Comfort', 'Igiene', 'Postura']),
+    premioOro:          500, premioArgento: 300, premioBronzo: 150,
+    prezzoIscrizione:   120, postiDisponibili: 30, ordine: 4,
+  },
+  {
+    id:                 'massaggio-freestyle',
+    nome:               'Massaggio Freestyle',
+    slug:               'massaggio-freestyle',
+    descrizione:        'Categoria libera dedicata alla capacità di costruire un trattamento originale, coerente e sicuro, combinando tecniche diverse in una performance professionale.',
+    chiPuoIscriversi:   'Professionisti e studenti avanzati. Le tecniche devono restare sicure, non invasive e compatibili con il regolamento.',
+    durataProva:        '30 minuti di prova',
+    criteriValutazione: JSON.stringify(['Originalità', 'Coerenza della sequenza', 'Qualità tecnica', 'Sicurezza', 'Comunicazione', 'Gestione del tempo', 'Esperienza del ricevente', 'Presentazione']),
+    premioOro:          500, premioArgento: 300, premioBronzo: 150,
+    prezzoIscrizione:   120, postiDisponibili: 30, ordine: 5,
   },
 ]
 
 async function seed() {
   console.log('🌱  Avvio seeding database Turso…\n')
 
-  for (const tt of TICKET_TYPES) {
-    // Check if already exists
+  for (const cat of CATEGORIE) {
     const [existing] = await db
-      .select({ id: ticketTypes.id, quantitySold: ticketTypes.quantitySold })
-      .from(ticketTypes)
-      .where(eq(ticketTypes.id, tt.id))
+      .select({ id: categorieCompetizione.id })
+      .from(categorieCompetizione)
+      .where(eq(categorieCompetizione.id, cat.id))
 
     if (existing) {
-      console.log(`  ⏭  [SKIP] "${tt.nome}" già presente (quantitySold: ${existing.quantitySold})`)
+      console.log(`  ⏭  [SKIP] "${cat.nome}" già presente`)
       continue
     }
 
-    await db.insert(ticketTypes).values({
-      id:          tt.id,
-      nome:        tt.nome,
-      prezzo:      tt.prezzo,
-      maxQuantity: tt.maxQuantity,
-      quantitySold: 0,
-    })
-
-    console.log(`  ✅  [OK]   "${tt.nome}" — €${tt.prezzo} — max ${tt.maxQuantity} posti`)
+    await db.insert(categorieCompetizione).values(cat)
+    console.log(`  ✅  [OK]   "${cat.nome}" — €${cat.prezzoIscrizione} — max ${cat.postiDisponibili} posti`)
   }
 
   console.log('\n✨  Seeding completato.\n')
@@ -62,6 +95,6 @@ async function seed() {
 }
 
 seed().catch((err) => {
-  console.error('❌  Errore durante il seeding:', err)
+  console.error('❌  Seeding fallito:', err)
   process.exit(1)
 })
