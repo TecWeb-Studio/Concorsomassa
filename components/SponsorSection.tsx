@@ -1,13 +1,4 @@
-import { ArrowRight, ExternalLink } from 'lucide-react'
-
-// Sponsor placeholder data — sostituire con dati reali
-const sponsor = [
-  { nome: 'Sponsor Gold 1',    livello: 'main',     url: '#', sigla: 'SG1' },
-  { nome: 'Sponsor Gold 2',    livello: 'main',     url: '#', sigla: 'SG2' },
-  { nome: 'Partner Tecnico 1', livello: 'partner',  url: '#', sigla: 'PT1' },
-  { nome: 'Partner Tecnico 2', livello: 'partner',  url: '#', sigla: 'PT2' },
-  { nome: 'Media Partner',     livello: 'media',    url: '#', sigla: 'MP1' },
-]
+import { ArrowRight } from 'lucide-react'
 
 const benefitSponsor = [
   'Logo visibile in homepage, sezioni categorie e premiazione',
@@ -29,49 +20,13 @@ export default function SponsorSection() {
       />
       <div className="absolute inset-0 pointer-events-none grain opacity-[0.03]" aria-hidden="true" />
 
-      {/* ── Section Header ── */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-16 md:mb-20">
-        <div className="flex items-center gap-4 mb-7">
-          <div className="w-6 h-px bg-gold/50" />
-          <span className="font-body text-[10px] tracking-[0.38em] uppercase text-gold/60">
-            Partner
-          </span>
-        </div>
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-          <h2
-            className="font-headline font-light text-warm leading-[0.9]"
-            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5.5rem)' }}
-          >
-            I nostri<br />
-            <em className="not-italic text-gold/75">Sponsor</em>
-          </h2>
-        </div>
-      </div>
 
-      {/* ── Sponsor grid ── */}
+
+      {/* ── Partner note ── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-20">
-        <div className="flex flex-wrap gap-4 items-center">
-          {sponsor.map((s) => (
-            <a
-              key={s.nome}
-              href={s.url}
-              target={s.url !== '#' ? '_blank' : undefined}
-              rel="noopener noreferrer"
-              aria-label={`Logo sponsor ${s.nome}`}
-              className={`flex items-center justify-center border rounded-xl font-headline font-light text-warm/40 transition-all duration-300 hover:border-gold/30 hover:text-warm/70 ${
-                s.livello === 'main'
-                  ? 'w-40 h-16 border-warm/12 text-2xl'
-                  : 'w-32 h-12 border-warm/8 text-lg'
-              }`}
-            >
-              {s.sigla}
-            </a>
-          ))}
-          {/* Placeholder "in aggiornamento" */}
-          <div className="w-32 h-12 border border-dashed border-warm/8 rounded-xl flex items-center justify-center">
-            <span className="font-body text-[9px] tracking-[0.2em] uppercase text-warm/20">Presto</span>
-          </div>
-        </div>
+        <p className="font-body text-sm text-warm/35 italic">
+          I partner della prima edizione verranno comunicati nei prossimi mesi.
+        </p>
       </div>
 
       {/* ── Diventa Sponsor CTA ── */}

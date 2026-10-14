@@ -3,8 +3,8 @@ import { Calendar, CheckCircle, Package, MapPin, Briefcase, AlertCircle } from '
 const blocchi = [
   {
     icon:   Calendar,
-    titolo: 'Chiusura iscrizioni',
-    testo:  'Iscrizioni aperte fino al 30 aprile 2026 o fino a esaurimento dei posti disponibili (max 30 per categoria). Iscriviti subito per garantire il tuo posto.',
+    titolo: 'Iscrizioni in apertura',
+    testo:  'Le iscrizioni per la seconda edizione apriranno nei primi mesi del 2027. Lascia la tua email per essere avvisato.',
     accent: true,
   },
   {
@@ -63,27 +63,21 @@ export default function CosaDeveSapereSection() {
   return (
     <section id="cosa-devi-sapere" className="relative bg-charcoal py-32 md:py-48 overflow-hidden">
 
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 60%, rgba(58,80,64,0.1) 0%, transparent 70%)' }}
-      />
-      <div className="absolute inset-0 pointer-events-none grain opacity-[0.025]" aria-hidden="true" />
+
 
       {/* ── Section Header ── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-16 md:mb-20">
-        <div className="flex items-center gap-4 mb-7">
-          <div className="w-6 h-px bg-gold/50" />
-          <span className="font-body text-[10px] tracking-[0.38em] uppercase text-gold/60">
-            Informazioni Pratiche
-          </span>
-        </div>
+        <span
+          aria-hidden="true"
+          className="block font-headline font-thin text-gold/20 leading-none mb-4 select-none"
+          style={{ fontSize: 'clamp(4rem, 8vw, 8rem)' }}
+        >—</span>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <h2
             className="font-headline font-light text-warm leading-[0.9]"
             style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5.5rem)' }}
           >
-            Cosa devi<br />
-            <em className="not-italic text-gold/75">sapere</em>
+            Cosa devi sapere
           </h2>
           <p className="font-body text-sm font-light text-warm/35 max-w-xs leading-relaxed">
             Tutto quello che ti serve prima di completare l&apos;iscrizione.

@@ -22,21 +22,21 @@ export default function Footer() {
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 flex flex-col md:flex-row items-start md:items-center justify-between gap-10 md:gap-20">
           <div>
             <p className="font-body text-[10px] tracking-[0.35em] uppercase text-gold/55 mb-4">
-              14 – 15 Giugno 2026 · Milano
+              Seconda Edizione · 2027 · Milano
             </p>
             <h3
               className="font-headline font-light text-warm leading-tight"
               style={{ fontSize: "clamp(1.8rem, 3.5vw, 3.2rem)" }}
             >
-              Assicurati il tuo posto<br />
-              <em className="not-italic text-gold/80">al Campionato</em>
+              Assicurati un posto<br />
+              <em className="not-italic text-gold/80">alla prossima edizione</em>
             </h3>
           </div>
           <a
-            href="/tickets"
+            href="/checkout"
             className="group flex-shrink-0 inline-flex items-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase text-ink bg-gold rounded-full px-10 py-4 hover:bg-gold-light transition-all duration-300 hover:shadow-[0_0_40px_rgba(190,153,56,0.25)]"
           >
-            Acquista il tuo Pass
+            Iscriviti ora
             <ArrowRight
               size={13}
               className="transition-transform duration-300 group-hover:translate-x-1"
@@ -114,7 +114,7 @@ export default function Footer() {
       >
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="font-body text-[10px] text-warm/18">
-            © 2026 Campionato Italiano di Massaggio. Tutti i diritti riservati.
+            © 2027 Campionato Italiano di Massaggio. Tutti i diritti riservati.
           </p>
           <div className="flex flex-wrap gap-6">
             {["Privacy Policy", "Termini e Condizioni", "Cookie Policy"].map((link) => (
@@ -144,7 +144,7 @@ export default function Footer() {
             letterSpacing: "-0.04em",
           }}
         >
-          2026
+          2027
         </span>
       </div>
     </footer>

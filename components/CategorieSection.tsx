@@ -26,10 +26,7 @@ export default function CategorieSection() {
         className="absolute top-0 inset-x-0 h-32 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, rgba(20,18,14,0.9), transparent)' }}
       />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 110%, rgba(58,80,64,0.05) 0%, transparent 70%)' }}
-      />
+
 
       {/* ── Section Header ── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-16 md:mb-20">
@@ -175,7 +172,7 @@ export default function CategorieSection() {
                         href={`/checkout?categoria=${cat.id}`}
                         className="group mt-2 inline-flex items-center justify-center gap-2 font-body text-[10px] tracking-[0.25em] uppercase text-ink bg-gold rounded-full px-6 py-3 hover:bg-gold/90 transition-all duration-300 hover:shadow-[0_0_30px_rgba(190,153,56,0.2)]"
                       >
-                        Iscriviti
+                        Pre-iscriviti
                         <ArrowRight size={11} className="transition-transform duration-300 group-hover:translate-x-0.5" />
                       </a>
                     </div>

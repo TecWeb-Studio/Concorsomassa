@@ -136,28 +136,22 @@ export default function ProgrammaSection() {
         }}
       />
 
-      {/* Subtle warm tint */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse 90% 70% at 50% 0%, rgba(190,153,56,0.04) 0%, transparent 60%)",
-        }}
-      />
+
 
       {/* ── Section Header ── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-20 md:mb-28">
-        <div className="flex items-center gap-4 mb-7">
-          <div className="w-6 h-px bg-sage/50" />
-          <span className="font-body text-[10px] tracking-[0.38em] uppercase text-sage/70">
-            L&apos;Evento
-          </span>
+        <div
+          aria-hidden="true"
+          className="font-headline font-thin leading-none select-none pointer-events-none mb-4"
+          style={{ fontSize: "clamp(6rem, 14vw, 16rem)", color: "rgba(58,80,64,0.12)" }}
+        >
+          07
         </div>
         <h2
           className="font-headline font-light text-stone leading-[0.9]"
           style={{ fontSize: "clamp(2.4rem, 5.5vw, 5.5rem)" }}
         >
-          Programma<br />
-          <em className="not-italic text-sage/70">dell&apos;Evento</em>
+          Programma
         </h2>
       </div>
 

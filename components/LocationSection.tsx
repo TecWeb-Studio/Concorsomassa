@@ -6,10 +6,7 @@ export default function LocationSection() {
   return (
     <section id="location" className="relative bg-linen overflow-hidden py-32 md:py-48">
 
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(58,80,64,0.05) 0%, transparent 70%)' }}
-      />
+
 
       {/* ── Section Header ── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-16 md:mb-20">
@@ -23,8 +20,7 @@ export default function LocationSection() {
           className="font-headline font-light text-stone leading-[0.9]"
           style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5.5rem)' }}
         >
-          Dove si svolge<br />
-          <em className="not-italic text-sage/70">il Campionato</em>
+          Palazzo delle Stelline · Milano
         </h2>
       </div>
 

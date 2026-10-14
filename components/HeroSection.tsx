@@ -57,16 +57,15 @@ export default function HeroSection() {
           GHOST EDITION NUMERAL
       ──────────────────────────────────────────── */}
       <div
-        className="absolute right-0 top-0 font-headline font-thin leading-[0.75] select-none pointer-events-none"
+        className="absolute right-0 bottom-0 font-headline font-thin leading-[0.75] select-none pointer-events-none"
         style={{
-          fontSize: "clamp(16rem, 32vw, 42rem)",
-          color: "rgba(190,153,56,0.038)",
+          fontSize: "clamp(10rem, 18vw, 22rem)",
+          color: "rgba(190,153,56,0.055)",
           letterSpacing: "-0.05em",
-          transform: "translateY(-8%)",
         }}
         aria-hidden="true"
       >
-        I
+        2026
       </div>
 
       {/* ────────────────────────────────────────────
@@ -81,7 +80,7 @@ export default function HeroSection() {
             style={{ width: "32px" }}
           />
           <p className="font-body text-[10px] tracking-[0.4em] uppercase text-sage-light">
-            Prima&nbsp;Edizione&nbsp;&nbsp;·&nbsp;&nbsp;Milano&nbsp;&nbsp;·&nbsp;&nbsp;2026
+            Seconda&nbsp;Edizione&nbsp;&nbsp;·&nbsp;&nbsp;In&nbsp;Preparazione&nbsp;&nbsp;·&nbsp;&nbsp;2027
           </p>
         </div>
 
@@ -114,7 +113,7 @@ export default function HeroSection() {
         />
 
         {/* Meta + CTA row */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-16 animate-fade-up [animation-delay:1.1s]">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 animate-fade-up [animation-delay:1.1s]">
 
           {/* Date & venue */}
           <div className="space-y-2">
@@ -122,7 +121,7 @@ export default function HeroSection() {
               <span
                 className="inline-block w-4 h-px bg-warm/20"
               />
-              Venerdì – Domenica · Giugno 2026
+              Date da confermare · 2027
             </p>
             <p className="font-body text-[11px] tracking-[0.3em] uppercase text-warm/38 flex items-center gap-2">
               <span
@@ -132,17 +131,25 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* CTA button */}
-          <a
-            href="/checkout"
-            className="group relative inline-flex items-center gap-3 font-body text-[11px] tracking-[0.28em] uppercase text-ink bg-gold rounded-full px-10 py-4 overflow-hidden transition-all duration-300 hover:bg-gold-light hover:shadow-[0_0_40px_rgba(190,153,56,0.3)]"
-          >
-            <span className="relative z-10">Iscriviti ora</span>
-            <ArrowRight
-              size={13}
-              className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
-            />
-          </a>
+          {/* CTA buttons */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <a
+              href="/checkout"
+              className="group relative inline-flex items-center gap-3 font-body text-[12px] tracking-[0.28em] uppercase text-ink bg-gold rounded-full px-11 py-4.5 overflow-hidden transition-all duration-300 hover:bg-gold-light hover:shadow-[0_0_50px_rgba(190,153,56,0.4)] shadow-[0_0_30px_rgba(190,153,56,0.18)]"
+            >
+              <span className="relative z-10 font-medium">Iscriviti al Campionato</span>
+              <ArrowRight
+                size={14}
+                className="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </a>
+            <a
+              href="#categorie"
+              className="font-body text-[10px] tracking-[0.28em] uppercase text-warm/45 hover:text-warm/80 transition-colors underline underline-offset-4 decoration-warm/20 hover:decoration-warm/50"
+            >
+              Scopri le categorie
+            </a>
+          </div>
         </div>
       </div>
 
