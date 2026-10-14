@@ -76,7 +76,7 @@ export default function ContattiSection() {
 
         {/* ── Contact info ── */}
         <div className="lg:col-span-2 flex flex-col gap-8">
-          <p className="font-body text-sm font-light leading-relaxed text-stone/55">
+          <p className="font-body text-sm font-light leading-relaxed text-stone/70">
             Siamo a disposizione per qualsiasi informazione sull&apos;iscrizione, le categorie, la logistica o le opportunità di sponsorizzazione. Rispondiamo entro 24–48 ore lavorative.
           </p>
 
@@ -89,8 +89,8 @@ export default function ContattiSection() {
                 <Mail size={14} strokeWidth={1.5} />
               </div>
               <div>
-                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/35 mb-0.5">Email</p>
-                <p className="font-body text-sm font-light text-stone/65">info@campionatomassaggiatori.it</p>
+                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/55 mb-0.5">Email</p>
+                <p className="font-body text-sm font-light text-stone/75">info@campionatomassaggiatori.it</p>
               </div>
             </a>
 
@@ -102,8 +102,8 @@ export default function ContattiSection() {
                 <Phone size={14} strokeWidth={1.5} />
               </div>
               <div>
-                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/35 mb-0.5">Telefono</p>
-                <p className="font-body text-sm font-light text-stone/65">+39 02 0000 0000</p>
+                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/55 mb-0.5">Telefono</p>
+                <p className="font-body text-sm font-light text-stone/75">+39 02 0000 0000</p>
               </div>
             </a>
 
@@ -117,8 +117,8 @@ export default function ContattiSection() {
                 <MessageCircle size={14} strokeWidth={1.5} />
               </div>
               <div>
-                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/35 mb-0.5">WhatsApp</p>
-                <p className="font-body text-sm font-light text-stone/65">Scrivici su WhatsApp</p>
+                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/55 mb-0.5">WhatsApp</p>
+                <p className="font-body text-sm font-light text-stone/75">Scrivici su WhatsApp</p>
               </div>
             </a>
           </div>
@@ -140,7 +140,7 @@ export default function ContattiSection() {
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="c-nome" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/40 block mb-2">
+                  <label htmlFor="c-nome" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/60 block mb-2">
                     Nome *
                   </label>
                   <input
@@ -154,7 +154,7 @@ export default function ContattiSection() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="c-email" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/40 block mb-2">
+                  <label htmlFor="c-email" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/60 block mb-2">
                     Email *
                   </label>
                   <input
@@ -171,7 +171,7 @@ export default function ContattiSection() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="c-telefono" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/40 block mb-2">
+                  <label htmlFor="c-telefono" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/60 block mb-2">
                     Telefono
                   </label>
                   <input
@@ -184,7 +184,7 @@ export default function ContattiSection() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="c-oggetto" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/40 block mb-2">
+                  <label htmlFor="c-oggetto" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/60 block mb-2">
                     Oggetto *
                   </label>
                   <select
@@ -202,7 +202,7 @@ export default function ContattiSection() {
               </div>
 
               <div>
-                <label htmlFor="c-messaggio" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/40 block mb-2">
+                <label htmlFor="c-messaggio" className="font-body text-[9px] tracking-[0.28em] uppercase text-stone/60 block mb-2">
                   Messaggio *
                 </label>
                 <textarea

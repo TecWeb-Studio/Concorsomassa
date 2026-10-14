@@ -33,7 +33,7 @@ export default function GrazieIscrizioneePage() {
         <Link href="/" className="flex items-center gap-3" aria-label="Home">
           <span className="font-headline text-gold text-2xl font-light tracking-[0.12em]">CIM</span>
           <span className="w-px h-5 bg-gold/20 hidden sm:block" />
-          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/30 hidden sm:block leading-tight">
+          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/50 hidden sm:block leading-tight">
             Campionato<br />Italiano Massaggiatori
           </span>
         </Link>
@@ -67,13 +67,13 @@ export default function GrazieIscrizioneePage() {
             Ci vediamo<br />
             <em className="not-italic text-gold/80">al Campionato</em>
           </h1>
-          <p className="font-body text-sm font-light leading-relaxed text-warm/45 mb-12 max-w-md mx-auto">
+          <p className="font-body text-sm font-light leading-relaxed text-warm/65 mb-12 max-w-md mx-auto">
             La tua iscrizione è stata confermata. Riceverai a breve una email di riepilogo con tutte le informazioni sulla tua partecipazione.
           </p>
 
           {/* Next steps */}
           <div className="text-left border border-warm/8 rounded-2xl p-7 mb-10 bg-warm/[0.02]">
-            <p className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/35 mb-5">Prossimi step</p>
+            <p className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/55 mb-5">Prossimi step</p>
             <div className="space-y-4">
               {[
                 { icon: Mail,     testo: 'Controlla la tua email per il riepilogo dell\'iscrizione' },
@@ -83,9 +83,9 @@ export default function GrazieIscrizioneePage() {
               ].map(({ icon: Icon, testo }) => (
                 <div key={testo} className="flex items-start gap-4">
                   <div className="w-7 h-7 rounded-full border border-warm/10 flex items-center justify-center flex-shrink-0">
-                    <Icon size={12} strokeWidth={1.5} className="text-warm/35" />
+                    <Icon size={12} strokeWidth={1.5} className="text-warm/55" />
                   </div>
-                  <p className="font-body text-sm font-light text-warm/55">{testo}</p>
+                  <p className="font-body text-sm font-light text-warm/70">{testo}</p>
                 </div>
               ))}
             </div>
@@ -102,7 +102,7 @@ export default function GrazieIscrizioneePage() {
             </Link>
             <Link
               href="/#location"
-              className="inline-flex items-center gap-3 font-body text-[10px] tracking-[0.25em] uppercase text-warm/40 border border-warm/15 rounded-full px-8 py-3.5 hover:border-warm/30 hover:text-warm/70 transition-all duration-300"
+              className="inline-flex items-center gap-3 font-body text-[10px] tracking-[0.25em] uppercase text-warm/60 border border-warm/20 rounded-full px-8 py-3.5 hover:border-warm/40 hover:text-warm/85 transition-all duration-300"
             >
               <MapPin size={11} strokeWidth={1.5} />
               Vedi la location
@@ -110,7 +110,7 @@ export default function GrazieIscrizioneePage() {
           </div>
 
           {/* Sharing */}
-          <p className="mt-12 font-body text-[10px] font-light text-warm/22 tracking-[0.15em] uppercase">
+          <p className="mt-12 font-body text-[10px] font-light text-warm/40 tracking-[0.15em] uppercase">
             Condividi la tua partecipazione sui social e usa #CIM2026
           </p>
         </div>

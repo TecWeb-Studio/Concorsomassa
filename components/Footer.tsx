@@ -55,24 +55,24 @@ export default function Footer() {
               <p className="font-headline text-gold text-3xl font-light tracking-[0.12em] mb-1">
                 CIM
               </p>
-              <p className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/30">
+              <p className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/50">
                 Campionato Italiano di Massaggio
               </p>
             </div>
-            <p className="font-body text-sm font-light leading-[1.85] text-warm/28 max-w-sm mb-8">
+            <p className="font-body text-sm font-light leading-[1.85] text-warm/50 max-w-sm mb-8">
               Il primo campionato nazionale dedicato all&apos;arte e alla scienza del massaggio professionale. Quattro discipline, i migliori professionisti italiani, una giuria internazionale.
             </p>
             {/* Location */}
             <div className="flex items-start gap-3 mb-3">
               <MapPin size={12} strokeWidth={1.5} className="text-gold/40 mt-0.5 flex-shrink-0" />
-              <p className="font-body text-[11px] font-light text-warm/30 leading-relaxed">
+              <p className="font-body text-[11px] font-light text-warm/50 leading-relaxed">
                 Palazzo delle Stelline<br />
                 Corso Magenta 61, Milano
               </p>
             </div>
             <div className="flex items-center gap-3">
               <Mail size={12} strokeWidth={1.5} className="text-gold/40 flex-shrink-0" />
-              <p className="font-body text-[11px] font-light text-warm/30">
+              <p className="font-body text-[11px] font-light text-warm/50">
                 info@campionatomassaggio.it
               </p>
             </div>
@@ -92,7 +92,7 @@ export default function Footer() {
                   <li key={link}>
                     <a
                       href="#"
-                      className="font-body text-[12px] font-light text-warm/30 hover:text-warm/65 transition-colors duration-300"
+                      className="font-body text-[12px] font-light text-warm/50 hover:text-warm/80 transition-colors duration-300"
                     >
                       {link}
                     </a>
@@ -113,7 +113,7 @@ export default function Footer() {
         style={{ borderColor: "rgba(232,224,207,0.05)" }}
       >
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="font-body text-[10px] text-warm/18">
+          <p className="font-body text-[10px] text-warm/45">
             © 2027 Campionato Italiano di Massaggio. Tutti i diritti riservati.
           </p>
           <div className="flex flex-wrap gap-6">
@@ -121,7 +121,7 @@ export default function Footer() {
               <a
                 key={link}
                 href="#"
-                className="font-body text-[10px] text-warm/18 hover:text-warm/40 transition-colors duration-300"
+                className="font-body text-[10px] text-warm/45 hover:text-warm/70 transition-colors duration-300"
               >
                 {link}
               </a>

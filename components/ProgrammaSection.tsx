@@ -165,7 +165,7 @@ export default function ProgrammaSection() {
             {/* Day header */}
             <div className="flex items-center gap-6 mb-14">
               <div>
-                <p className="font-body text-[9px] tracking-[0.4em] uppercase text-sage/55 mb-1.5">
+                <p className="font-body text-[9px] tracking-[0.4em] uppercase text-sage/75 mb-1.5">
                   {giorno.giorno}
                 </p>
                 <p
@@ -227,7 +227,7 @@ export default function ProgrammaSection() {
                           size={11}
                           strokeWidth={1.5}
                           className={`${
-                            evento.accent ? "text-gold/60" : "text-stone/25"
+                            evento.accent ? "text-gold/60" : "text-stone/45"
                           }`}
                         />
                       </div>
@@ -243,7 +243,7 @@ export default function ProgrammaSection() {
                       </h4>
 
                       {/* Description */}
-                      <p className="font-body text-sm font-light leading-[1.8] text-stone/48 group-hover:text-stone/62 transition-colors duration-300">
+                      <p className="font-body text-sm font-light leading-[1.8] text-stone/65 group-hover:text-stone/80 transition-colors duration-300">
                         {evento.desc}
                       </p>
                     </div>

@@ -117,17 +117,17 @@ export default function HeroSection() {
 
           {/* Date & venue */}
           <div className="space-y-2">
-            <p className="font-body text-[11px] tracking-[0.3em] uppercase text-warm/38 flex items-center gap-2">
+            <p className="font-body text-[11px] tracking-[0.3em] uppercase text-warm/65 flex items-center gap-2">
               <span
                 className="inline-block w-4 h-px bg-warm/20"
               />
               Date da confermare · 2027
             </p>
-            <p className="font-body text-[11px] tracking-[0.3em] uppercase text-warm/38 flex items-center gap-2">
+            <p className="font-body text-[11px] tracking-[0.3em] uppercase text-warm/65 flex items-center gap-2">
               <span
                 className="inline-block w-4 h-px bg-warm/20"
               />
-              <a href="#location" className="hover:text-warm/70 transition-colors">Palazzo delle Stelline, Milano</a>
+              <a href="#location" className="hover:text-warm/90 transition-colors">Palazzo delle Stelline, Milano</a>
             </p>
           </div>
 
@@ -145,7 +145,7 @@ export default function HeroSection() {
             </a>
             <a
               href="#categorie"
-              className="font-body text-[10px] tracking-[0.28em] uppercase text-warm/45 hover:text-warm/80 transition-colors underline underline-offset-4 decoration-warm/20 hover:decoration-warm/50"
+              className="font-body text-[10px] tracking-[0.28em] uppercase text-warm/65 hover:text-warm/90 transition-colors underline underline-offset-4 decoration-warm/30 hover:decoration-warm/60"
             >
               Scopri le categorie
             </a>
@@ -156,7 +156,7 @@ export default function HeroSection() {
       {/* Scroll cue */}
       <div className="relative z-10 flex justify-center pb-10 animate-fade-in [animation-delay:1.7s]">
         <div className="flex flex-col items-center gap-2">
-          <span className="font-body text-[8px] tracking-[0.45em] uppercase text-warm/20">
+          <span className="font-body text-[8px] tracking-[0.45em] uppercase text-warm/40">
             Scopri
           </span>
           <div

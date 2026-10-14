@@ -140,7 +140,7 @@ export default function CheckoutForm() {
         <Link href="/" className="flex items-center gap-3" aria-label="Home">
           <span className="font-headline text-gold text-2xl font-light tracking-[0.12em]">CIM</span>
           <span className="w-px h-5 bg-gold/20 hidden sm:block" />
-          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/30 hidden sm:block leading-tight">
+          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/50 hidden sm:block leading-tight">
             Campionato<br />Italiano Massaggiatori
           </span>
         </Link>
@@ -151,7 +151,7 @@ export default function CheckoutForm() {
               {i > 0 && <div className="w-6 h-px bg-warm/15" />}
               <div className={`w-6 h-6 rounded-full border flex items-center justify-center text-[9px] transition-all duration-300 ${
                 Number(s) < step ? 'bg-gold/20 border-gold/40 text-gold/80' :
-                Number(s) === step ? 'border-gold/60 text-gold' : 'border-warm/15 text-warm/25'
+                Number(s) === step ? 'border-gold/60 text-gold' : 'border-warm/20 text-warm/40'
               }`}>
                 {Number(s) < step ? <Check size={9} /> : s}
               </div>
@@ -164,7 +164,7 @@ export default function CheckoutForm() {
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 pt-8">
         <button
           onClick={() => step > 1 ? setStep((step - 1) as 1|2|3) : router.push('/')}
-          className="inline-flex items-center gap-2 font-body text-[10px] tracking-[0.28em] uppercase text-warm/35 hover:text-warm/65 transition-colors group"
+          className="inline-flex items-center gap-2 font-body text-[10px] tracking-[0.28em] uppercase text-warm/60 hover:text-warm/85 transition-colors group"
         >
           <ArrowLeft size={12} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
           {step > 1 ? 'Indietro' : 'Torna alla Home'}
@@ -269,7 +269,7 @@ export default function CheckoutForm() {
                         </div>
                         <div>
                           <p className="font-body text-sm font-light text-warm/85">{cat.nome}</p>
-                          <p className="font-body text-[10px] text-warm/35">{cat.durataProva}</p>
+                          <p className="font-body text-[10px] text-warm/55">{cat.durataProva}</p>
                         </div>
                       </div>
                       <span className="font-body text-sm text-warm/50">
@@ -305,7 +305,7 @@ export default function CheckoutForm() {
                     <span>Totale (IVA incl.)</span>
                     <span className="font-medium">€{totaleEuro}</span>
                   </div>
-                  <p className="font-body text-[10px] text-warm/30 mt-1">
+                  <p className="font-body text-[10px] text-warm/50 mt-1">
                     Imponibile €{imponibile} + IVA 22% €{iva}
                   </p>
                 </div>
@@ -335,13 +335,13 @@ export default function CheckoutForm() {
 
               {/* Riepilogo ordine */}
               <div className="border border-warm/10 rounded-2xl p-7 mb-7 bg-white/[0.03]">
-                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/35 mb-5">Riepilogo iscrizione</p>
+                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/55 mb-5">Riepilogo iscrizione</p>
                 <div className="grid grid-cols-2 gap-y-2 mb-5">
-                  <span className="font-body text-xs text-warm/40">Concorrente</span>
-                  <span className="font-body text-xs text-warm/70">{datiPersonali?.nome} {datiPersonali?.cognome}</span>
-                  <span className="font-body text-xs text-warm/40">Email</span>
-                  <span className="font-body text-xs text-warm/70">{datiPersonali?.email}</span>
-                  <span className="font-body text-xs text-warm/40">Categorie</span>
+                  <span className="font-body text-xs text-warm/60">Concorrente</span>
+                  <span className="font-body text-xs text-warm/80">{datiPersonali?.nome} {datiPersonali?.cognome}</span>
+                  <span className="font-body text-xs text-warm/60">Email</span>
+                  <span className="font-body text-xs text-warm/80">{datiPersonali?.email}</span>
+                  <span className="font-body text-xs text-warm/60">Categorie</span>
                   <div>
                     {categorieSel.map(id => (
                       <span key={id} className="block font-body text-xs text-warm/70">{CATEGORIE_CONFIG[id].nome}</span>
@@ -377,8 +377,8 @@ export default function CheckoutForm() {
 
               {/* Sicurezza */}
               <div className="flex items-center gap-2 mb-8">
-                <Shield size={12} strokeWidth={1.5} className="text-warm/25" />
-                <p className="font-body text-[10px] text-warm/25">
+                <Shield size={12} strokeWidth={1.5} className="text-warm/45" />
+                <p className="font-body text-[10px] text-warm/45">
                   Pagamento sicuro tramite Stripe · I dati della carta non vengono mai memorizzati sul nostro server
                 </p>
               </div>
@@ -423,7 +423,7 @@ interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const FormField = ({ id, label, error, ...props }: FormFieldProps) => (
   <div>
-    <label htmlFor={id} className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/40 block mb-2">
+    <label htmlFor={id} className="font-body text-[9px] tracking-[0.28em] uppercase text-warm/60 block mb-2">
       {label}
     </label>
     <input

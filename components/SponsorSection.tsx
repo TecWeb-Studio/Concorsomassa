@@ -24,7 +24,7 @@ export default function SponsorSection() {
 
       {/* ── Partner note ── */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mb-20">
-        <p className="font-body text-sm text-warm/35 italic">
+        <p className="font-body text-sm text-warm/60 italic">
           I partner della prima edizione verranno comunicati nei prossimi mesi.
         </p>
       </div>
@@ -43,14 +43,14 @@ export default function SponsorSection() {
               Porta il tuo brand<br />davanti a{' '}
               <em className="not-italic text-gold/80">150+ professionisti</em>
             </h3>
-            <p className="font-body text-sm font-light leading-relaxed text-warm/45 mb-8 max-w-md">
+            <p className="font-body text-sm font-light leading-relaxed text-warm/65 mb-8 max-w-md">
               Raggiungi massaggiatori professionisti, operatori del benessere, docenti e scuole di formazione da tutta Italia. Visibilità online e offline durante le 3 giornate dell&apos;evento.
             </p>
             <ul className="space-y-2 mb-10">
               {benefitSponsor.map((b) => (
                 <li key={b} className="flex items-start gap-3">
                   <div className="w-1 h-1 rounded-full bg-gold/50 mt-2 flex-shrink-0" />
-                  <p className="font-body text-xs font-light text-warm/50">{b}</p>
+                  <p className="font-body text-xs font-light text-warm/65">{b}</p>
                 </li>
               ))}
             </ul>
@@ -70,11 +70,11 @@ export default function SponsorSection() {
                   className={`rounded-xl p-6 border ${i === 0 ? 'border-gold/20 bg-gold/5' : 'border-warm/8 bg-warm/[0.03]'}`}
                 >
                   <p className="font-body text-[9px] tracking-[0.25em] uppercase text-gold/50 mb-1">Pacchetto</p>
-                  <p className="font-body text-xs font-light text-warm/60">{tipo}</p>
+                  <p className="font-body text-xs font-light text-warm/70">{tipo}</p>
                 </div>
               ))}
             </div>
-            <p className="font-body text-[10px] font-light text-warm/25 mt-5 text-center">
+            <p className="font-body text-[10px] font-light text-warm/45 mt-5 text-center">
               Contattaci per il media kit completo
             </p>
           </div>

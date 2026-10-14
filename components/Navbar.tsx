@@ -42,7 +42,7 @@ export default function Navbar() {
             CIM
           </span>
           <span className="w-px h-5 bg-gold/20 hidden sm:block" />
-          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/30 hidden sm:block leading-tight">
+          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/50 hidden sm:block leading-tight">
             Campionato<br />Italiano Massaggiatori
           </span>
         </a>
@@ -53,7 +53,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="font-body text-[10px] tracking-[0.22em] uppercase text-warm/45 hover:text-warm/90 transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px after:bg-gold/50 hover:after:w-full after:transition-all after:duration-300"
+              className="font-body text-[10px] tracking-[0.22em] uppercase text-warm/65 hover:text-warm/95 transition-colors duration-300 relative after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px after:bg-gold/50 hover:after:w-full after:transition-all after:duration-300"
             >
               {link.label}
             </a>
@@ -89,7 +89,7 @@ export default function Navbar() {
               key={link.label}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="font-body text-[11px] tracking-[0.28em] uppercase text-warm/50 hover:text-warm transition-colors"
+              className="font-body text-[11px] tracking-[0.28em] uppercase text-warm/65 hover:text-warm transition-colors"
             >
               {link.label}
             </a>

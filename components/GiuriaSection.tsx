@@ -51,7 +51,7 @@ export default function GiuriaSection() {
         >
           La giuria sarà annunciata
         </h3>
-        <p className="font-body text-sm font-light text-warm/45 max-w-lg mx-auto leading-relaxed">
+        <p className="font-body text-sm font-light text-warm/65 max-w-lg mx-auto leading-relaxed">
           I nominativi della commissione di valutazione verranno comunicati nelle settimane precedenti all&apos;evento.
         </p>
       </div>
@@ -91,7 +91,7 @@ export default function GiuriaSection() {
             />
 
             {/* Role */}
-            <p className="font-body text-sm font-light text-warm/40 text-center">
+            <p className="font-body text-sm font-light text-warm/60 text-center">
               {r.ruolo}
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function GiuriaSection() {
             background: "rgba(190,153,56,0.25)",
           }}
         />
-        <p className="font-body text-xs text-warm/30">
+        <p className="font-body text-xs text-warm/50">
           I nominativi verranno rivelati nelle settimane precedenti all&apos;evento.
         </p>
       </div>

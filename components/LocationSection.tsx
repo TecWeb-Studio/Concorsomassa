@@ -46,20 +46,20 @@ export default function LocationSection() {
           </div>
 
           {/* Description */}
-          <p className="font-body text-sm font-light leading-relaxed text-stone/60 mb-10 max-w-md">
+              <p className="font-body text-sm font-light text-stone/70 mb-10 max-w-md leading-relaxed">
             Palazzo delle Stelline è un'elegante struttura congressuale nel cuore di Milano, ospitata in un antico convento del XV secolo. Le sale modulari e gli spazi luminosi sono il contesto ideale per una competizione professionale di alto livello.
           </p>
 
           {/* Come arrivare */}
           <div className="space-y-5 mb-10">
-            <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/35">Come arrivare</p>
+            <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/55">Come arrivare</p>
             <div className="flex items-start gap-4">
               <div className="w-8 h-8 rounded-full border border-stone/10 flex items-center justify-center flex-shrink-0">
                 <Train size={13} strokeWidth={1.5} className="text-stone/40" />
               </div>
               <div>
-                <p className="font-body text-xs font-medium text-stone/65 mb-0.5">Metropolitana</p>
-                <p className="font-body text-xs font-light text-stone/45">M2 (linea verde) — Fermata Cadorna o Sant&apos;Ambrogio, 8 minuti a piedi</p>
+                <p className="font-body text-xs font-medium text-stone/75 mb-0.5">Metropolitana</p>
+                <p className="font-body text-xs font-light text-stone/60">M2 (linea verde) — Fermata Cadorna o Sant&apos;Ambrogio, 8 minuti a piedi</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -67,8 +67,8 @@ export default function LocationSection() {
                 <Car size={13} strokeWidth={1.5} className="text-stone/40" />
               </div>
               <div>
-                <p className="font-body text-xs font-medium text-stone/65 mb-0.5">Auto</p>
-                <p className="font-body text-xs font-light text-stone/45">Parcheggio convenzionato in Piazza Cadorna e via Carducci. Area C attiva nei giorni di gara.</p>
+                <p className="font-body text-xs font-medium text-stone/75 mb-0.5">Auto</p>
+                <p className="font-body text-xs font-light text-stone/60">Parcheggio convenzionato in Piazza Cadorna e via Carducci. Area C attiva nei giorni di gara.</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -76,8 +76,8 @@ export default function LocationSection() {
                 <Navigation size={13} strokeWidth={1.5} className="text-stone/40" />
               </div>
               <div>
-                <p className="font-body text-xs font-medium text-stone/65 mb-0.5">Stazione Centrale</p>
-                <p className="font-body text-xs font-light text-stone/45">Taxi o M2 gialla da Stazione Centrale: 25 minuti. Navette dedicate sabato e domenica.</p>
+                <p className="font-body text-xs font-medium text-stone/75 mb-0.5">Stazione Centrale</p>
+                <p className="font-body text-xs font-light text-stone/60">Taxi o M2 gialla da Stazione Centrale: 25 minuti. Navette dedicate sabato e domenica.</p>
               </div>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function LocationSection() {
           </div>
           {/* Fallback text always visible below map on small screens */}
           <div className="p-5 border-t border-stone/8">
-            <p className="font-body text-[11px] font-light text-stone/45">
+            <p className="font-body text-[11px] font-light text-stone/60">
               Palazzo delle Stelline · Corso Magenta 61, Milano ·{' '}
               <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="text-sage/60 hover:text-sage underline underline-offset-2">
                 Apri su Google Maps

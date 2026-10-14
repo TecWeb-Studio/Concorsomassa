@@ -33,7 +33,7 @@ export default function CheckoutPage() {
         <Link href="/" className="flex items-center gap-3" aria-label="Home">
           <span className="font-headline text-gold text-2xl font-light tracking-[0.12em]">CIM</span>
           <span className="w-px h-5 bg-gold/20 hidden sm:block" />
-          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/30 hidden sm:block leading-tight">
+          <span className="font-body text-[9px] tracking-[0.3em] uppercase text-warm/50 hidden sm:block leading-tight">
             Campionato<br />Italiano Massaggiatori
           </span>
         </Link>
@@ -43,7 +43,7 @@ export default function CheckoutPage() {
       <div className="relative z-10 max-w-[1440px] mx-auto w-full px-8 md:px-20 pt-8">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 font-body text-[10px] tracking-[0.28em] uppercase text-warm/35 hover:text-warm/65 transition-colors group"
+          className="inline-flex items-center gap-2 font-body text-[10px] tracking-[0.28em] uppercase text-warm/60 hover:text-warm/85 transition-colors group"
         >
           <ArrowLeft size={12} className="transition-transform duration-300 group-hover:-translate-x-0.5" />
           Torna alla Home
@@ -75,7 +75,7 @@ export default function CheckoutPage() {
           </h1>
 
           {/* Body */}
-          <p className="font-body text-sm font-light leading-relaxed text-warm/45 mb-12 max-w-sm mx-auto">
+          <p className="font-body text-sm font-light leading-relaxed text-warm/65 mb-12 max-w-sm mx-auto">
             Le iscrizioni per la seconda edizione apriranno nei primi mesi del 2027.
             Scrivici per ricevere un avviso appena saranno disponibili.
           </p>

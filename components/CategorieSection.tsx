@@ -44,7 +44,7 @@ export default function CategorieSection() {
             Categorie<br />
             <em className="not-italic text-sage/70">di Gara</em>
           </h2>
-          <p className="font-body text-sm font-light text-stone/50 max-w-xs leading-relaxed">
+          <p className="font-body text-sm font-light text-stone/65 max-w-xs leading-relaxed">
             Puoi iscriverti a una o più categorie. Apri ogni disciplina per vedere requisiti, premi e criteri di valutazione.
           </p>
         </div>
@@ -72,7 +72,7 @@ export default function CategorieSection() {
                 aria-controls={`cat-${cat.id}`}
               >
                 <div className="flex items-center gap-5">
-                  <span className="font-body text-[10px] tracking-[0.3em] text-stone/30 hidden sm:block">
+                  <span className="font-body text-[10px] tracking-[0.3em] text-stone/50 hidden sm:block">
                     0{index + 1}
                   </span>
                   <div>
@@ -82,13 +82,13 @@ export default function CategorieSection() {
                     >
                       {cat.nome}
                     </h3>
-                    <p className="font-body text-[10px] tracking-[0.25em] uppercase text-sage/60 mt-1">
+                    <p className="font-body text-[10px] tracking-[0.25em] uppercase text-sage/75 mt-1">
                       {cat.durataProva}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="font-body text-sm font-light text-stone/50 hidden md:block">
+                  <span className="font-body text-sm font-light text-stone/65 hidden md:block">
                     €{cat.prezzoIscrizione}
                   </span>
                   <div
@@ -99,7 +99,7 @@ export default function CategorieSection() {
                     <ChevronDown
                       size={14}
                       strokeWidth={1.5}
-                      className={`text-stone/40 transition-colors ${isAperta ? 'text-gold/70' : ''}`}
+                      className={`text-stone/55 transition-colors ${isAperta ? 'text-gold/70' : ''}`}
                     />
                   </div>
                 </div>
@@ -108,7 +108,7 @@ export default function CategorieSection() {
               {/* ── Expandable body ── */}
               <div
                 id={`cat-${cat.id}`}
-                className={`transition-all duration-500 ${isAperta ? 'max-h-[800px]' : 'max-h-0'} overflow-hidden`}
+                className={`transition-all duration-500 ${isAperta ? 'max-h-[1600px]' : 'max-h-0'} overflow-hidden`}
               >
                 <div className="px-8 md:px-10 pb-10 pt-2">
                   <div className="h-px bg-stone/8 mb-8" />
@@ -117,20 +117,20 @@ export default function CategorieSection() {
                     {/* Descrizione + chi si può iscrivere */}
                     <div className="md:col-span-2 space-y-6">
                       <div>
-                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/35 mb-2">Descrizione</p>
-                        <p className="font-body text-sm font-light leading-relaxed text-stone/65">{cat.descrizione}</p>
+                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/55 mb-2">Descrizione</p>
+                        <p className="font-body text-sm font-light leading-relaxed text-stone/75">{cat.descrizione}</p>
                       </div>
                       <div>
-                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/35 mb-2">Chi può iscriversi</p>
-                        <p className="font-body text-sm font-light leading-relaxed text-stone/65">{cat.chiPuoIscriversi}</p>
+                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/55 mb-2">Chi può iscriversi</p>
+                        <p className="font-body text-sm font-light leading-relaxed text-stone/75">{cat.chiPuoIscriversi}</p>
                       </div>
                       <div>
-                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/35 mb-3">Criteri di valutazione</p>
+                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/55 mb-3">Criteri di valutazione</p>
                         <ul className="flex flex-wrap gap-2">
                           {cat.criteri.map(c => (
                             <li
                               key={c}
-                              className="font-body text-[10px] tracking-[0.15em] uppercase text-stone/50 border border-stone/12 rounded-full px-3 py-1"
+                              className="font-body text-[10px] tracking-[0.15em] uppercase text-stone/65 border border-stone/20 rounded-full px-3 py-1"
                             >
                               {c}
                             </li>
@@ -142,31 +142,31 @@ export default function CategorieSection() {
                     {/* Premi + CTA */}
                     <div className="flex flex-col gap-5">
                       <div>
-                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/35 mb-3">Premi</p>
+                        <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/55 mb-3">Premi</p>
                         <div className="space-y-2">
                           <div className="flex items-center gap-3">
                             <Trophy size={12} className="text-yellow-600" />
-                            <span className="font-body text-xs text-stone/60">Oro</span>
-                            <span className="font-body text-sm font-medium text-stone/80 ml-auto">€{cat.premioOro}</span>
+                            <span className="font-body text-xs text-stone/70">Oro</span>
+                            <span className="font-body text-sm font-medium text-stone/90 ml-auto">€{cat.premioOro}</span>
                           </div>
                           <div className="flex items-center gap-3">
                             <Trophy size={12} className="text-stone/40" />
-                            <span className="font-body text-xs text-stone/60">Argento</span>
-                            <span className="font-body text-sm font-medium text-stone/80 ml-auto">€{cat.premioArgento}</span>
+                            <span className="font-body text-xs text-stone/70">Argento</span>
+                            <span className="font-body text-sm font-medium text-stone/90 ml-auto">€{cat.premioArgento}</span>
                           </div>
                           <div className="flex items-center gap-3">
                             <Trophy size={12} className="text-amber-700/50" />
-                            <span className="font-body text-xs text-stone/60">Bronzo</span>
-                            <span className="font-body text-sm font-medium text-stone/80 ml-auto">€{cat.premioBronzo}</span>
+                            <span className="font-body text-xs text-stone/70">Bronzo</span>
+                            <span className="font-body text-sm font-medium text-stone/90 ml-auto">€{cat.premioBronzo}</span>
                           </div>
                         </div>
                       </div>
                       <div>
                         <div className="flex items-center gap-2 mb-1">
-                          <Clock size={11} className="text-stone/35" />
-                          <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/35">Durata prova</p>
+                          <Clock size={11} className="text-stone/50" />
+                          <p className="font-body text-[9px] tracking-[0.32em] uppercase text-stone/55">Durata prova</p>
                         </div>
-                        <p className="font-body text-xs text-stone/55">{cat.durataProva}</p>
+                        <p className="font-body text-xs text-stone/65">{cat.durataProva}</p>
                       </div>
                       <a
                         href={`/checkout?categoria=${cat.id}`}
@@ -186,7 +186,7 @@ export default function CategorieSection() {
 
       {/* Nota iscrizione multipla */}
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-20 mt-10">
-        <p className="font-body text-[11px] font-light text-stone/40 text-center">
+        <p className="font-body text-[11px] font-light text-stone/55 text-center">
           Puoi iscriverti a più categorie — la seconda categoria ha un costo ridotto a €90.
         </p>
       </div>

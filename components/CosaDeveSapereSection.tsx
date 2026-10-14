@@ -79,7 +79,7 @@ export default function CosaDeveSapereSection() {
           >
             Cosa devi sapere
           </h2>
-          <p className="font-body text-sm font-light text-warm/35 max-w-xs leading-relaxed">
+          <p className="font-body text-sm font-light text-warm/60 max-w-xs leading-relaxed">
             Tutto quello che ti serve prima di completare l&apos;iscrizione.
           </p>
         </div>
@@ -104,11 +104,11 @@ export default function CosaDeveSapereSection() {
                 <Icon size={15} strokeWidth={1.5} />
               </div>
               <h3 className={`font-body text-[10px] tracking-[0.28em] uppercase mb-3 ${
-                b.accent ? 'text-gold/80' : 'text-warm/50'
+                b.accent ? 'text-gold/90' : 'text-warm/65'
               }`}>
                 {b.titolo}
               </h3>
-              <p className="font-body text-sm font-light leading-relaxed text-warm/55">
+              <p className="font-body text-sm font-light leading-relaxed text-warm/70">
                 {b.testo}
                 {b.link && (
                   <a href={b.link} className="ml-1 text-gold/70 hover:text-gold underline underline-offset-2 transition-colors">
@@ -127,8 +127,8 @@ export default function CosaDeveSapereSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {faq.map((f) => (
             <div key={f.domanda} className="border-l border-gold/20 pl-6">
-              <p className="font-body text-sm font-medium text-warm/80 mb-2">{f.domanda}</p>
-              <p className="font-body text-sm font-light leading-relaxed text-warm/45">{f.risposta}</p>
+              <p className="font-body text-sm font-medium text-warm/90 mb-2">{f.domanda}</p>
+              <p className="font-body text-sm font-light leading-relaxed text-warm/65">{f.risposta}</p>
             </div>
           ))}
         </div>
